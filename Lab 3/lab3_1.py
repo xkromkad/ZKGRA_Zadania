@@ -25,7 +25,7 @@ def polybius_encode(message, square):
 
 # Messages to encode
 message_a = "ENCRYPT ME 2 DAY"
-message_b = "your last name"
+message_b = "Kromka"
 
 # Encode messages using the Polybius square
 encoded_message_a = polybius_encode(message_a, polybius_square)
