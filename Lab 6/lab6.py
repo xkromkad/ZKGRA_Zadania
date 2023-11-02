@@ -1,3 +1,4 @@
+#author: David Kormka
 DES_IP = [58, 50, 42, 34, 26, 18, 10, 2,
       60, 52, 44, 36, 28, 20, 12, 4,
       62, 54, 46, 38, 30, 22, 14, 6,
@@ -25,8 +26,12 @@ INTEL_IP = [6, 14, 22, 30, 38, 46, 54,
             19, 27, 35, 43, 51, 59, 1, 9, 17,
             25, 33, 41, 49, 57]
 
+DES = [[14, 4, 13, 1, 2, 15, 11, 8, 3, 10, 6, 12, 5, 9, 0, 7],
+       [0, 15, 7, 4, 14, 2, 13, 1, 10, 6, 12, 11, 9, 5, 3, 8],
+       [4, 1, 14, 8, 13, 6, 2, 11, 15, 12, 9, 7, 3, 10, 5, 0],
+       [15, 12, 8, 2, 4, 9, 1, 7, 5, 11, 3, 14, 10, 0, 6, 13]]
 #Task 1
-print("Task 1")
+
 def tab_values():
 
     intel_values = [14, 23, 61, 6]
@@ -34,4 +39,31 @@ def tab_values():
         index = INTEL_IP.index(item)
         print(f"Intel x86 initial value: {item}, DES initial value: {DES_IP[index]}, DES final value: {DES_FP[index]}")
 
+#Task 2
+def sbox(binary_number):
+
+    # Extracting first and last digits
+    first_last_digits = binary_number[0] + binary_number[-1:]
+
+    # Extracting middle four digits
+    middle_digits = binary_number[1:5]
+
+    # Converting binary to decimal
+    outer_decimal = int(first_last_digits, 2)
+    middle_decimal = int(middle_digits, 2)
+    return outer_decimal, middle_decimal
+
+
+
+print("Task 1")
 tab_values()
+
+print("Task 2")
+letter_counter = ord('a')
+binary_numbers = ["011010", "001111", "110110", "110011"]
+for binary_number in binary_numbers:
+    outer, inter = sbox(binary_number)
+    result = DES[outer][inter]
+    letter = chr(letter_counter)
+    print(f"{letter}: {result}")
+    letter_counter += 1
