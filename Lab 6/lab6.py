@@ -26,7 +26,7 @@ INTEL_IP = [6, 14, 22, 30, 38, 46, 54,
             19, 27, 35, 43, 51, 59, 1, 9, 17,
             25, 33, 41, 49, 57]
 
-DES = [[14, 4, 13, 1, 2, 15, 11, 8, 3, 10, 6, 12, 5, 9, 0, 7],
+SBOX = [[14, 4, 13, 1, 2, 15, 11, 8, 3, 10, 6, 12, 5, 9, 0, 7],
        [0, 15, 7, 4, 14, 2, 13, 1, 10, 6, 12, 11, 9, 5, 3, 8],
        [4, 1, 14, 8, 13, 6, 2, 11, 15, 12, 9, 7, 3, 10, 5, 0],
        [15, 12, 8, 2, 4, 9, 1, 7, 5, 11, 3, 14, 10, 0, 6, 13]]
@@ -63,7 +63,7 @@ letter_counter = ord('a')
 binary_numbers = ["011010", "001111", "110110", "110011"]
 for binary_number in binary_numbers:
     outer, inter = sbox(binary_number)
-    result = DES[outer][inter]
+    result = SBOX[outer][inter]
     letter = chr(letter_counter)
     print(f"{letter}: {result}")
     letter_counter += 1
